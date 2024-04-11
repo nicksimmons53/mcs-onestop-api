@@ -1,6 +1,9 @@
 import {DataTypes} from "sequelize";
 import sequelize from "../config/db";
+import {DateTime} from "luxon";
+import Status from "./status";
 
+/* Todo: add validators to all fields for creating new data */
 const Client = sequelize.define(
   "client",
   {
@@ -14,7 +17,6 @@ const Client = sequelize.define(
     },
     shortName: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     territory: {
       type: DataTypes.STRING,
@@ -22,6 +24,7 @@ const Client = sequelize.define(
     },
     arSpecialist: {
       type: DataTypes.INTEGER,
+      defaultValue: 1010,
     },
     employeeNumber: {
       type: DataTypes.INTEGER,
@@ -29,17 +32,16 @@ const Client = sequelize.define(
     clientType: {
       type: DataTypes.INTEGER,
     },
-    status: {
-      type: DataTypes.INTEGER,
-    },
     notes: {
       type: DataTypes.STRING,
     },
     createdAt: {
       type: DataTypes.DATE,
+      defaultValue: DateTime.now().toFormat("YYYY-MM-DD HH:mm:ss")
     },
     updatedAt: {
       type: DataTypes.DATE,
+      defaultValue: DateTime.now().toFormat("YYYY-MM-DD HH:mm:ss")
     },
     sageObjectId: {
       type: DataTypes.STRING
@@ -49,5 +51,9 @@ const Client = sequelize.define(
     indexes: [{ unique: true, fields: ["id"] }]
   }
 );
+
+Client.hasOne(Status, {
+  foreignKey: "clientId"
+})
 
 export default Client;

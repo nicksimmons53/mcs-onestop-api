@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import clientRouter from './client.route';
+import router from "./client.route";
 const routes = Router();
 
 // define the base path and the router that's going to be called
-routes.use('/', clientRouter);
+routes.use('/', router);
 
 // export the route
 export default routes;

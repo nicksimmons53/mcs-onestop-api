@@ -1,15 +1,14 @@
 import { Request, Response } from "express";
-import ClientModel from "../models/client";
+import UserModel from "../models/user";
 import * as dotenv from "dotenv";
-import User from "../models/user";
-import Status from "../models/status";
+import Client from "../models/client";
 
 dotenv.config();
 
-export async function getAllClients(req: Request, res: Response) {
-  ClientModel.findAll({
+export async function getAllUsers(req: Request, res: Response) {
+  UserModel.findAll({
     attributes: { exclude: ["createdAt", "updatedAt"]},
-    include: [{ model: User }, { model: Status }]
+    include: []
   })
     .then((result: any) => {
       return res.json(result);
@@ -17,7 +16,7 @@ export async function getAllClients(req: Request, res: Response) {
     .catch((error: Error) => {
       console.log(error);
       return res.json({
-        message: "Unable to retrieve routes."
+        message: "Unable to retrieve users."
       })
     });
 }

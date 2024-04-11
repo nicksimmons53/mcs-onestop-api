@@ -1,8 +1,9 @@
 import { Router } from "express";
 import {getAllClients} from "../controllers/client.controller";
 import db from "../config/db";
+import {getAllUsers} from "../controllers/user.controller";
 
-const clientRouter = Router();
+const router = Router();
 
 const initDB = async() => {
   try {
@@ -14,6 +15,7 @@ const initDB = async() => {
 
 initDB();
 
-clientRouter.get("/get-all", getAllClients);
+router.get("/clients/get-all", getAllClients);
+router.get("/users/get-all", getAllUsers);
 
-export default clientRouter;
+export default router;
