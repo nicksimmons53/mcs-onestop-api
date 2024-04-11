@@ -2,6 +2,9 @@ import {DataTypes} from "sequelize";
 import sequelize from "../config/db";
 import {DateTime} from "luxon";
 import Status from "./status";
+import Address from "./address";
+import Contact from "./contact";
+import Approval from "./approval";
 
 /* Todo: add validators to all fields for creating new data */
 const Client = sequelize.define(
@@ -54,6 +57,18 @@ const Client = sequelize.define(
 
 Client.hasOne(Status, {
   foreignKey: "clientId"
+});
+
+Client.hasMany(Address, {
+  foreignKey: "clientId",
+});
+
+Client.hasMany(Contact, {
+  foreignKey: "clientId",
+});
+
+Client.hasMany(Approval, {
+  foreignKey: "clientId",
 })
 
 export default Client;
