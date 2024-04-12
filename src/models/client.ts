@@ -76,7 +76,7 @@ Client.hasMany(Contact, {
   foreignKey: "clientId",
 });
 
-Client.hasMany(Approval, {
+Client.hasOne(Approval, {
   foreignKey: "clientId",
 });
 
