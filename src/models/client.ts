@@ -5,6 +5,15 @@ import Status from "./status";
 import Address from "./address";
 import Contact from "./contact";
 import Approval from "./approval";
+import AccountingInfo from "./accountingInfo";
+import ExpeditingInfo from "./expeditingInfo";
+import ProgramDetails_WoodVinyl from "./programDetailsWoodVinyl";
+import ProgramDetails_Cabinet from "./programDetailsCabinet";
+import Programs from "./programs";
+import ProgramDetails_Carpet from "./programDetailsCarpet";
+import ProgramDetails_Countertops from "./programDetailsCountertops";
+import ProgramDetails_Tile from "./programDetailsTile";
+import BillingParts from "./billingParts";
 
 /* Todo: add validators to all fields for creating new data */
 const Client = sequelize.define(
@@ -69,6 +78,46 @@ Client.hasMany(Contact, {
 
 Client.hasMany(Approval, {
   foreignKey: "clientId",
-})
+});
+
+Client.hasMany(BillingParts, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(AccountingInfo, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ExpeditingInfo, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ProgramDetails_Cabinet, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ProgramDetails_Carpet, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ProgramDetails_Countertops, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ProgramDetails_Cabinet, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ProgramDetails_Tile, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(ProgramDetails_WoodVinyl, {
+  foreignKey: "clientId",
+});
+
+Client.hasOne(Programs, {
+  foreignKey: "clientId"
+});
 
 export default Client;
